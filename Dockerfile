@@ -2,10 +2,12 @@ FROM ttbb/base
 
 ENV ETCD_HOME /opt/sh/etcd
 
-RUN wget https://storage.googleapis.com/etcd/v3.5.0/etcd-v3.5.0-linux-amd64.tar.gz  && \
+ARG TARGETARCH
+
+RUN wget https://storage.googleapis.com/etcd/v3.5.1/etcd-v3.5.1-linux-$TARGETARCH.tar.gz  && \
 mkdir -p etcd && \
-tar -xf etcd-v3.5.0-linux-amd64.tar.gz -C etcd --strip-components 1 && \
-rm -rf etcd-v3.5.0-linux-amd64.tar.gz && \
+tar -xf etcd-v3.5.1-linux-$TARGETARCH.tar.gz -C etcd --strip-components 1 && \
+rm -rf etcd-v3.5.1-linux-$TARGETARCH.tar.gz && \
 ln -s /opt/sh/etcd/etcd /usr/bin/etcd && \
 ln -s /opt/sh/etcd/etcdctl /usr/bin/etcdctl
 
